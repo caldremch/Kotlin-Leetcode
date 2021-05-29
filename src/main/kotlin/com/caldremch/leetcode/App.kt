@@ -35,7 +35,7 @@ object App {
         n11.next = n22
         n22.next = n33
 
-       val resultNode =  app2.addTwoNumbers(n1, n11)
+       val resultNode =  app2.addTwoNumbers2(n1, n11)
 
         var start = resultNode
         while (start!= null){
