@@ -1,7 +1,5 @@
 package com.caldremch.leetcode
 
-import kotlin.math.abs
-
 /**
  *
  * @auther Caldremch
@@ -27,7 +25,7 @@ import kotlin.math.abs
  *
  * 分析
  * 1234=>1234
- * 123 =>0123
+ * 123 =>1230  ==>2464
  * 1357
  *
  */
@@ -36,6 +34,96 @@ class ListNode(var `val`: Int) {
 }
 
 class Solution2 {
+
+    fun addTwoNumbers3(l1: ListNode, l2: ListNode): ListNode? {
+
+        var insteadL1 = l1
+        var insteadL2 = l2
+        /**
+         * 1.遍历L1链表 等到size， L2 同理等 size
+         * 2.拼接 L2，形成一条链表
+         * 3.跳步的形式
+         */
+        var next: ListNode? = l1
+        var count1 = 0
+        //n
+        while (next != null) {
+            count1++
+            next = next.next
+        }
+
+        var count2 = 0
+        next = l2
+        //n
+        while (next != null) {
+            count2++
+            next = next.next
+        }
+
+        if (count1 > count2) {
+            val deltaCount = count1 - count2
+            var head = insteadL2
+            for (x in 0 until deltaCount) {
+                val temp = ListNode(0)
+                temp.next = head
+                head = temp
+            }
+            insteadL2 = head
+        } else {
+            val deltaCount = count2 - count1
+            var head = insteadL1
+            for (x in 0 until deltaCount) {
+                val temp = ListNode(0)
+                temp.next = head
+                head = temp
+            }
+            insteadL1 = head
+        }
+
+
+        var nextNode: ListNode? = insteadL1
+        var nextNode2: ListNode? = insteadL2
+        var resultTail: ListNode? = null
+        var resultRoot: ListNode? = null
+        var isNextIn = false
+        while (nextNode != null || isNextIn) {
+
+            if(nextNode == null){
+                isNextIn = false
+                val temp = ListNode(1)
+                resultTail!!.next = temp
+                resultTail = temp
+                continue
+            }
+
+            //l1 补 0
+            val v1 = nextNode.`val`
+            val v2 = nextNode2!!.`val`
+            val sum = v1 + v2
+
+            val temp = ListNode(sum % 10 + if (isNextIn) {
+                isNextIn = false
+                1
+            } else 0)
+
+            if (sum >= 10) {
+                isNextIn = true
+            }
+
+            if (resultTail == null) {
+                resultTail = temp
+                resultRoot = resultTail
+            } else {
+                resultTail.next = temp
+                resultTail = temp
+            }
+            nextNode = nextNode.next
+            nextNode2 = nextNode2.next
+        }
+
+        return resultRoot
+    }
+
 
     fun addTwoNumbers2(l1: ListNode, l2: ListNode): ListNode? {
 
@@ -66,6 +154,9 @@ class Solution2 {
 //        l1.next = l2
         var count3 = 0
 
+        var max = if (count1>count2) count1 else count2
+
+        val bucket = IntArray(max)
 
         if (count1 > count2) {
             val deltaCount = count1 - count2
