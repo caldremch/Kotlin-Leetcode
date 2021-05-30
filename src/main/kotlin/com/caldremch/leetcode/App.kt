@@ -52,7 +52,7 @@ object App {
         val app = Solution1()
         app.twoSum(intArrayOf(3,2,4), 6)
         val app2 = Solution2()
-        val n1 = createNode(intArrayOf(2,9))
+        val n1 = createNode(intArrayOf(9,9,9,9,9,9,9))
 //        val n2 = createNode(4)
 //        val n3 = createNode(3)
 //        n1.next = n2
@@ -61,14 +61,14 @@ object App {
 
 //        [1,9] ===> 92
 //       yhhhhhhhhhhh [1]
-        val n11 = createNode(intArrayOf(11))
+        val n11 = createNode(intArrayOf(9,9,9,9))
 //        val n22 = createNode(6)
 //        val n33 = createNode(4)
 //        n11.next = n22
 //        n22.next = n33
 //        printNode(n1)
 //        printNode(n11)
-        val resultNode =  Laboratory.addTwoNumbers3(n1, n11)
+        val resultNode =  app2.addTwoNumbers(n1, n11)
         printNode(resultNode)
 
     }
