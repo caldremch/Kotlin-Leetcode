@@ -1,5 +1,6 @@
 package com.caldremch.helper
 
+import com.caldremch.leetcode.ListNode
 import java.util.*
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
@@ -126,6 +127,30 @@ object AlgorithmChaos {
 
         return headNode
     }
+
+
+    /**
+     * 随机生成[size]个元素的链表
+     */
+    fun randomLinkListNode(size: Int = 15): ListNode {
+        if (size == 1) return ListNode(randomValue())
+        var n = size
+        val headNode = ListNode(randomValue())
+        n--
+        var node: ListNode = ListNode(randomValue())
+        n--
+        headNode.next = node
+        while (n-- > 0) {
+            val cNode = ListNode(randomValue())
+            node.next = cNode
+            node = cNode
+        }
+
+        return headNode
+    }
+
+
+
 
     @JvmStatic
     fun main(args: Array<String>) {

@@ -24,6 +24,9 @@ class ListNode141(var `val`: Int) {
     var next: ListNode? = null
 }
 
+
+
+
 class Solution {
     fun hasCycle(head: ListNode?): Boolean {
 

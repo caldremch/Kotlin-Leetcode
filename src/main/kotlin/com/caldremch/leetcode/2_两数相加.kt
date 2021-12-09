@@ -1,5 +1,7 @@
 package com.caldremch.leetcode
 
+import com.caldremch.helper.LinkNode
+
 /**
  *
  * @auther Caldremch
@@ -33,14 +35,30 @@ class ListNode(var `val`: Int) {
     var next: ListNode? = null
 }
 
+
+fun ListNode?.println() {
+    if (this == null) {
+        kotlin.io.println("链表为空")
+        return
+    }
+
+    var nextNode = this
+    while (nextNode != null) {
+        kotlin.io.print("${nextNode.`val`!!},")
+        nextNode = nextNode.next
+    }
+    kotlin.io.println()
+
+}
+
 class Solution2 {
 
 
     fun addTwoNumbers(l1: ListNode, l2: ListNode): ListNode? {
         var insteadL1 = l1
         var insteadL2 = l2
-        var l1Tail:ListNode? = null
-        var l1Tai2:ListNode? = null
+        var l1Tail: ListNode? = null
+        var l1Tai2: ListNode? = null
         var next: ListNode? = l1
         var count1 = 0
         //n
@@ -89,7 +107,7 @@ class Solution2 {
 
         while (nextNode != null || isNextIn) {
 
-            if(nextNode == null){
+            if (nextNode == null) {
                 isNextIn = false
                 val temp = ListNode(1)
                 resultTail!!.next = temp
@@ -112,7 +130,7 @@ class Solution2 {
                 isNextIn = true
             }
 
-            val temp = ListNode(valueWithLastAdd%10)
+            val temp = ListNode(valueWithLastAdd % 10)
 
             if (valueWithLastAdd >= 10) {
                 isNextIn = true
@@ -123,7 +141,7 @@ class Solution2 {
                 resultRoot = resultTail
             } else {
                 resultTail.next = temp
-                resultTail =temp
+                resultTail = temp
             }
             nextNode = nextNode.next
             nextNode2 = nextNode2.next
