@@ -59,6 +59,6 @@ char *longestPalindrome(char *s) {
             }
         }
     }
-
+    free(map);
     return max_palindrome;
 }

@@ -3,7 +3,7 @@
 #include <string.h>
 
 int main() {
-    char *s = "aba";
+    char *s = "abcacba";
     printf("是回文:%d\n", is_palindrome(s, 0, strlen(s) - 1));
     printf("最长回文子串:%s\n", longestPalindrome("aba"));
     printf("最长回文子串:%s\n", longestPalindrome("babad"));
